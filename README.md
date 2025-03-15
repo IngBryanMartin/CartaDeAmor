@@ -21,4 +21,4 @@ Localizar el index.html para poder modificar el titulo y contenido del mensaje (
 ## Mis redes
 
 [TikTok](https://www.tiktok.com/@bryanghc)
-[Facebook](https://www.facebook.com/XDemente/)
+[Facebook](https://www.facebook.com/XDemente)

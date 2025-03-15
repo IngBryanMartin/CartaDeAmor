@@ -1,3 +1,4 @@
+/* By BryanGHC */
 $(document).ready(function () {
     var envelope = $("#envelope");
     var btn_open = $("#open");
@@ -20,3 +21,4 @@ $(document).ready(function () {
       envelope.addClass("close").removeClass("open");
     }
   });
+/* By BryanGHC */

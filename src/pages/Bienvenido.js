@@ -1,6 +1,9 @@
 /* Tiktok BryanMQL */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 
 // Función para dividir el mensaje sin cortar palabras
 function splitMessageByWords(text, maxLen = 23, maxLines = 4) {
@@ -31,9 +34,19 @@ const Bienvenido = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     const [mensaje1, mensaje2, mensaje3, mensaje4] = splitMessageByWords(mensaje, 23, 4);
-    navigate('/carta', { state: { nombre, mensaje1, mensaje2, mensaje3, mensaje4 } });
+    
+    // Crea la carta en Firestore
+  const docRef = await addDoc(collection(db, "cartas"), {
+    nombre,
+    mensaje1,
+    mensaje2,
+    mensaje3,
+    mensaje4,
+    createdAt: serverTimestamp()
+  });
+  navigate(`/carta/${docRef.id}`);
   };
 
   const handleClear = () => {
@@ -90,7 +103,7 @@ const Bienvenido = () => {
               placeholder="Escribe tu mensaje especial..."
               onChange={(e) => {
                 let value = e.target.value
-                  .replace(/[^A-Za-z0-9 .,]/g, '')
+                  .replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 .,]/g, '')
                   .replace(/ {2,}/g, ' ')
                   .replace(/,{2,}/g, ',')
                   .replace(/\.{2,}/g, '.')

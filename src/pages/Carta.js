@@ -1,19 +1,44 @@
 /* Tiktok BryanMQL */
-import React, { useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useRef, useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import { doc, getDoc } from "firebase/firestore";
 
 const Carta = () => {
-  const location = useLocation();
+  const { id } = useParams();
   const navigate = useNavigate();
   const envelopeRef = useRef(null);
+  const [carta, setCarta] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const { nombre, mensaje1, mensaje2, mensaje3, mensaje4 } = location.state || {};
-
-
-  if (!nombre || !mensaje1) {
-  navigate('/');
-  return null;
-}
+  useEffect(() => {
+  const fetchCarta = async () => {
+    if (!id) {
+      navigate('/');
+      return;
+    }
+    const docSnap = await getDoc(doc(db, "cartas", id));
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      // Verifica expiración (12 horas)
+      const createdAt = data.createdAt?.toDate ? data.createdAt.toDate() : null;
+      if (createdAt) {
+        const now = new Date();
+        const diff = (now - createdAt) / (1000 * 60 * 60); // horas
+        if (diff > 12) {
+          setCarta(null); // Carta expirada
+          setLoading(false);
+          return;
+        }
+      }
+      setCarta(data);
+    } else {
+      setCarta(null);
+    }
+    setLoading(false);
+  };
+  fetchCarta();
+}, [id, navigate]);
 
   const openEnvelope = () => {
     if (envelopeRef.current) {
@@ -28,6 +53,11 @@ const { nombre, mensaje1, mensaje2, mensaje3, mensaje4 } = location.state || {};
       envelopeRef.current.classList.remove('open');
     }
   };
+
+  if (loading) return <div>Cargando carta...</div>;
+  if (!carta) return <div>Carta no encontrada o expirada.</div>;
+
+  const { nombre, mensaje1, mensaje2, mensaje3, mensaje4 } = carta;
 
   return (
     <div>

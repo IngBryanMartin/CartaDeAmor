@@ -1,7 +1,7 @@
 {
   "name": "carta_amor",
   "version": "0.1.0",
-  "homepage": "https://github.com/IngBryanMartin/CartaDeAmor",
+  "homepage": "https://ingbryanmartin.github.io/CartaDeAmor",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",

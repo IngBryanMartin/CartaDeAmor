@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/IngBryanMartin/CartaDeAmor/static/css/main.75a82d3d.css",
-    "main.js": "/IngBryanMartin/CartaDeAmor/static/js/main.ff952d9f.js",
-    "index.html": "/IngBryanMartin/CartaDeAmor/index.html",
-    "main.75a82d3d.css.map": "/IngBryanMartin/CartaDeAmor/static/css/main.75a82d3d.css.map",
-    "main.ff952d9f.js.map": "/IngBryanMartin/CartaDeAmor/static/js/main.ff952d9f.js.map"
+    "main.css": "/CartaDeAmor/static/css/main.75a82d3d.css",
+    "main.js": "/CartaDeAmor/static/js/main.ff952d9f.js",
+    "index.html": "/CartaDeAmor/index.html",
+    "main.75a82d3d.css.map": "/CartaDeAmor/static/css/main.75a82d3d.css.map",
+    "main.ff952d9f.js.map": "/CartaDeAmor/static/js/main.ff952d9f.js.map"
   },
   "entrypoints": [
     "static/css/main.75a82d3d.css",

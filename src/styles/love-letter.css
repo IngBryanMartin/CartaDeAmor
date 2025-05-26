@@ -1,0 +1,428 @@
+/* Tiktok BryanMQL */
+#envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 150px;
+  background-color: #d9534f;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bienvenido-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-label-text {
+  margin-left: 12%;
+  font-size: 2.2em;
+}
+
+#nombre,
+#mensaje {
+  margin-left: 12%;
+  font-size: 2.1em;
+  max-width: 75%;
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.flap {
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 82px solid transparent;
+  border-top: 98px solid #d9534f;
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.pocket {
+  border-left: 140px solid #f5a3a2;
+  border-right: 140px solid #f5a3a2;
+  border-bottom: 90px solid #ff6f61;
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.letter {
+  position: relative;
+  background-color: #fff;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+  font-family: "Dancing Script", cursive;
+}
+
+.letter:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.words {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 14%;
+  background-color: #ffe6e6;
+}
+
+.words.line1 {
+  top: 4%;
+  width: 80%;
+  height: 20%;
+  font-size: 1.2rem;
+}
+
+.words.line2 {
+  top: 26%;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.words.line3 {
+  top: 43%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.words.line4 {
+  top: 60%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.words.line5 {
+  top: 76%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.open .flap {
+  transform: rotateX(180deg);
+  transition: transform 0.4s ease, z-index 0.6s;
+  z-index: 1;
+}
+
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 1s;
+  z-index: 5;
+}
+
+.close .letter {
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+
+.open .letter {
+  transform: translateY(-100px);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+  z-index: 2;
+}
+
+.hearts {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  pointer-events: none;
+}
+
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: #e60073;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  pointer-events: none;
+}
+
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.close .heart {
+  opacity: 0;
+  animation: none;
+}
+
+.a1 {
+  left: 20%;
+  transform: scale(0.6);
+  opacity: 1;
+  animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate, fadeOut 9s ease-in-out 6s forwards;
+  animation-fill-mode: forwards;
+  animation-delay: 0.7s;
+}
+
+.a2 {
+  left: 55%;
+  transform: scale(1);
+  opacity: 1;
+  animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate, fadeOut 9s ease-in-out 6s forwards;
+  animation-fill-mode: forwards;
+  animation-delay: 0.7s;
+}
+
+.a3 {
+  left: 10%;
+  transform: scale(0.8);
+  opacity: 1;
+  animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate, fadeOut 9s ease-in-out 6s forwards;
+  animation-fill-mode: forwards;
+  animation-delay: 0.7s;
+}
+
+.bounce-title {
+  color: #f36762;
+  font-size: 2.6em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.1em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.bounce-word {
+  display: inline-block;
+  animation: bounce-word 0.4s infinite alternate;
+  transition: color 0.2s;
+}
+
+@keyframes bounce-word {
+  100%  { transform: translateY(-10px) scale(1.1); color: #d9534f; }
+}
+
+@keyframes slideUp {
+  0% { top: 0; }
+  100% { top: -600px; }
+}
+@keyframes sideSway {
+  0% { margin-left: 0px; }
+  100% { margin-left: 50px; }
+}
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+body {
+  background-color: #f0e6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.envlope-wrapper {
+  height: 380px;
+  transform: scale(2.0);
+  transform-origin: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+.reset {
+  text-align: center;
+  margin-top: 180px;
+}
+
+.reset button {
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: solid 2px #d9534f;
+  border-radius: 4px;
+  color: #d9534f;
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 5px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.reset button:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.btn-group-bienvenido {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-group-bienvenido button {
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: solid 2px #d9534f;
+  border-radius: 4px;
+  color: #d9534f;
+  display: inline-block;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 5px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.btn-group-bienvenido button:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.btn-group-bienvenido button:disabled,
+.btn-group-bienvenido button[disabled] {
+  background-color: #eee !important;
+  color: #b8716d !important;
+  border-color: #fd7672 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+  pointer-events: none;
+  box-shadow: none;
+  transition: none;
+}
+
+.btn-group-bienvenido button:hover:disabled,
+.btn-group-bienvenido button[disabled]:hover {
+  background-color: #eee !important;
+  color: #bbb !important;
+}
+
+@media (max-width: 1200px) {
+  .envlope-wrapper {
+    transform: scale(1.8);
+  }
+  .bienvenido-container {
+    transform: scale(0.9);
+  }
+  .input-label-text {
+  margin-left: 10%;
+  font-size: 2.2em;
+  }
+  #nombre,
+  #mensaje {
+    margin-left: 10%;
+    font-size: 2.1em;
+    max-width: 75%;
+  }
+  .bounce-title {
+  font-size: 1.8em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 2px;
+}
+}
+@media (max-width: 992px) {
+  .envlope-wrapper {
+    transform: scale(1.6);
+  }
+  .bienvenido-container {
+    transform: scale(0.9);
+  }
+  .input-label-text {
+  margin-left: 10%;
+  font-size: 2.2em;
+  }
+  #nombre,
+  #mensaje {
+    margin-left: 10%;
+    font-size: 2.1em;
+    max-width: 75%;
+  }
+}
+@media (max-width: 760px) {
+  .envlope-wrapper {
+    transform: scale(1.3);
+    padding: 10px;
+  }
+  .bienvenido-container {
+    transform: scale(0.9);
+  }
+  .input-label-text {
+  margin-left: 10%;
+  font-size: 2.2em;
+  }
+  #nombre,
+  #mensaje {
+    margin-left: 10%;
+    font-size: 2.1em;
+    max-width: 75%;
+  }
+}
+@media (max-width: 576px) {
+  .envlope-wrapper {
+    transform: scale(1.1);
+  }
+  .bienvenido-container {
+    transform: scale(0.9);
+  }
+  .input-label-text {
+  margin-left: 10%;
+  font-size: 2.2em;
+  }
+  #nombre,
+  #mensaje {
+    margin-left: 10%;
+    font-size: 2.1em;
+    max-width: 75%;
+  }
+}
+
+/* Tiktok BryanMQL */
